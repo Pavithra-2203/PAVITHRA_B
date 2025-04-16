@@ -1,0 +1,52 @@
+CREATE DATABASE hospitalmanagementsystem;
+
+use hospitalmanagementsystem;
+
+
+CREATE TABLE Patient (
+    patientId INT PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    dateOfBirth DATE,
+    gender VARCHAR(10),
+    contactNumber VARCHAR(15),
+    address VARCHAR(100)
+);
+
+CREATE TABLE Doctor (
+    doctorId INT PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    specialization VARCHAR(50),
+    contactNumber VARCHAR(15)
+);
+
+CREATE TABLE Appointment (
+    appointmentId INT PRIMARY KEY,
+    patientId INT,
+    doctorId INT,
+    appointmentDate DATE,
+    description VARCHAR(255),
+    FOREIGN KEY (patientId) REFERENCES Patient(patientId),
+    FOREIGN KEY (doctorId) REFERENCES Doctor(doctorId)
+);
+
+
+INSERT INTO Patient (patientId, firstName, lastName, dateOfBirth, gender, contactNumber, address) VALUES
+(1, 'PAVITHRA', 'BALA', '2004-01-01', 'Female', '1234567890', '123 Main Street'),
+(2, 'RAMYA', 'SHANMUGAM', '2000-05-15', 'Female', '9876543210', '456 Oak Avenue'),
+(3, 'AGNES', 'PRATHIBA', '2002-10-30', 'Female', '9998887777', '789 Pine Lane');
+
+
+
+INSERT INTO Doctor (doctorId, firstName, lastName, specialization, contactNumber) VALUES
+(1, 'SUGIRTHA', 'SANJAY', 'Cardiology', '1112223333'),
+(2, 'NANCY', 'EBENEZAR', 'Neurology', '4445556666'),
+(3, 'PRIYA', 'VIJAY', 'Dermatology', '7778889999');
+
+
+
+INSERT INTO Appointment (appointmentId, patientId, doctorId, appointmentDate, description) VALUES
+(1, 1, 1, '2025-04-17', 'Routine cardiac check-up'),
+(2, 2, 2, '2025-04-18', 'Neurological Checkin'),
+(3, 3, 3, '2025-04-19', 'Skin rash consultation');
